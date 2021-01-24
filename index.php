@@ -12,6 +12,15 @@ if ($conn->connect_error) die("Fatal Error");
 
 <script>
 
+//erases the default field hint text on click
+//disables itself after the first click
+function clearField(fieldId){
+document.getElementById(fieldId).value = "";
+document.getElementById(fieldId).innerHTML = ""; 
+document.getElementById(fieldId).setAttribute('OnClick',''); 
+}
+
+//checks whether the user has changed the default text and length > 20 char
 function validateForm(){
 var textArea = document.getElementById('ideaTextArea').value;
 var nameField = document.getElementById('nameField').value;
@@ -28,6 +37,8 @@ console.log("Submitted");
 document.getElementById("ideaForm").submit();
 }
 }
+//end validate form function
+
 </script>
 </head>
 <body>
@@ -61,8 +72,8 @@ echo '</h5>';
 
 <h2>Make a deposit</h2>
 <form id="ideaForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-<textarea id="ideaTextArea" rows="4" cols="50" name="idea">Type your idea here</textarea><br>
-Name: <input type="text" id="nameField" name="name" value="Enter your name here">
+<textarea id="ideaTextArea" rows="4" cols="50" name="idea" onClick="clearField('ideaTextArea')">Type your idea here</textarea><br>
+Name: <input type="text" id="nameField" name="name" onClick="clearField('nameField')" value="Enter your name here">
 <br>
 <input type="button" onClick="validateForm()" value="Deposit">
 </form>
