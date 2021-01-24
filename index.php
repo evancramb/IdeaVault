@@ -11,6 +11,13 @@ if ($conn->connect_error) die("Fatal Error");
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <script>
+//A script to prevent the form from being resubmitted on refresh
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+
+<script>
 
 //erases the default field hint text on click
 //disables itself after the first click
